@@ -5,10 +5,16 @@
     "import/no-named-as-default": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "max-len": [2, 150, 2, {
-      "ignoreUrls": true,
-      "ignoreComments": false
-    }],
+    "max-len": [
+      2,
+      150,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false
+      }
+    ],
+    "semi": "off",
     "react/forbid-prop-types": 1,
     "react/jsx-filename-extension": 0,
     "react/jsx-no-bind": 0,
