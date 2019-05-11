@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const propTypes = {
   start: PropTypes.object.isRequired,
@@ -7,46 +7,46 @@ const propTypes = {
   value: PropTypes.string,
   onRemove: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-}
+};
 
 const defaultProps = {
   value: '',
-}
+};
+
 
 class Modal extends React.Component {
   handleRemove = () => {
-    this.props.onRemove()
+    this.props.onRemove();
   }
 
   handleSave = () => {
-    const { value } = this.input
+    const { value } = this.input;
     this.props.onSave({
       value,
-    })
+    });
   }
 
   renderText() {
     const {
       start,
       end,
-    } = this.props
+    } = this.props;
 
     if (start.isSame(end, 'day')) {
-      return (<span>{`${start.format('Do MMM., HH:mm')} - ${end.format('HH:mm')}`}</span>)
+      return (<span>{`${start.format('Do MMM., HH:mm')} - ${end.format('HH:mm')}`}</span>);
     }
-    return (
-      <span>{`${start.format('Do MMM.')} - ${end.format('Do MMM.')}, ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>)
+    return (<span>{`${start.format('Do MMM.')} - ${end.format('Do MMM.')}, ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>);
   }
 
   render() {
     const {
       value,
-    } = this.props
+    } = this.props;
     return (
       <div className="customModal">
         <div className="customModal__text">{this.renderText()}</div>
         <input
-          ref={(el) => { this.input = el }}
+          ref={(el) => { this.input = el; }}
           className="customModal__input"
           type="text"
           placeholder="Enter something"
@@ -55,10 +55,10 @@ class Modal extends React.Component {
         <button className="customModal__button" onClick={this.handleRemove}>Delete</button>
         <button className="customModal__button customModal__button_float_right" onClick={this.handleSave}>Save</button>
       </div>
-    )
+    );
   }
 }
 
-Modal.propTypes = propTypes
-Modal.defaultProps = defaultProps
-export default Modal
+Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
+export default Modal;
