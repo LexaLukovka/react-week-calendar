@@ -83,7 +83,9 @@ class WeekCalendar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.scaleUnit !== this.props.scaleUnit || nextProps.startTime !== this.props.startTime || nextProps.endTime !== this.props.endTime) {
+    if (nextProps.scaleUnit !== this.props.scaleUnit
+      || nextProps.startTime !== this.props.startTime
+      || nextProps.endTime !== this.props.endTime) {
       const scaleIntervals = Utils.getIntervalsByDuration(nextProps.scaleUnit, nextProps.startTime, nextProps.endTime)
       this.setState({
         scaleIntervals,
@@ -250,7 +252,7 @@ class WeekCalendar extends React.Component {
     })
   }
 
-  handleEventClick = (oEvent) => {
+  handleEventClick = oEvent => () => {
     if (this.props.onEventClick) {
       this.props.onEventClick(oEvent)
     }
@@ -282,7 +284,9 @@ class WeekCalendar extends React.Component {
 
     for (let dayIndex = 0; dayIndex < numberOfDays; dayIndex += 1) {
       const day = moment(firstDay).startOf('day').add(dayIndex, 'day')
-      const intervals = selectedIntervals.filter(interval => interval.start.isSame(day, 'day') || interval.end.isSame(day, 'day'))
+      const intervals = selectedIntervals.filter(interval => interval.start.isSame(day, 'day')
+        || interval.end.isSame(day, 'day'))
+
       if (intervals.length > 0) {
         intervals.sort((i1, i2) => i1.start.diff(i2.start, 'minutes'))
 
@@ -307,8 +311,9 @@ class WeekCalendar extends React.Component {
           const top = startY * cellHeight
           const width = (columnDimensions[dayIndex].width - eventSpacing) / groupIntersection
 
-          // TODO: dividing  by the GroupIntersection doesn't seem to work all that great...
-          const left = columnDimensions[dayIndex].left + ((width + Math.floor(eventSpacing / groupIntersection)) * beforeIntersectionNumber)
+          const left = columnDimensions[dayIndex].left
+            + ((width + Math.floor(eventSpacing / groupIntersection))
+              * beforeIntersectionNumber)
           const height = (endY - startY) * cellHeight
           const eventWrapperStyle = {
             top,
@@ -321,7 +326,7 @@ class WeekCalendar extends React.Component {
               className="weekCalendar__overlay"
               key={(dayIndex * 20000) + index}
               style={eventWrapperStyle}
-              onClick={this.handleEventClick.bind(this, interval)}
+              onClick={this.handleEventClick(interval)}
             >
               <EventComponent {...interval} />
             </div>
