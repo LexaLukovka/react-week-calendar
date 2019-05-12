@@ -26,7 +26,7 @@ const propTypes = {
   cellHeight: PropTypes.number,
   dayCellComponent: PropTypes.func,
 
-  selectedIntervals: PropTypes.array,
+  prevSelectedIntervals: PropTypes.array,
   onIntervalSelect: PropTypes.func,
   onIntervalUpdate: PropTypes.func,
   onIntervalRemove: PropTypes.func,
@@ -51,7 +51,7 @@ const defaultProps = {
   scaleFormat: 'HH:mm',
   cellHeight: 25,
   dayCellComponent: DayCell,
-  selectedIntervals: [],
+  prevSelectedIntervals: [],
   eventComponent: Event,
   modalComponent: Modal,
   useModal: true,
@@ -268,6 +268,7 @@ class WeekCalendar extends React.Component {
       numberOfDays,
       cellHeight,
       scaleUnit,
+      // eslint-disable-next-line react/prop-types
       selectedIntervals,
       eventSpacing,
     } = this.props
@@ -320,6 +321,7 @@ class WeekCalendar extends React.Component {
             left,
             width,
             height,
+            // background: getRandomColor(),
           }
           const eventComponent = (
             <div

@@ -23,9 +23,15 @@ const CalendarHeader = ({
   let totalWidth = 0
 
   for (let i = 0; i < numberOfDays; i += 1) {
-    const date = moment(firstDay).add(i, 'd')
+    const date = moment(firstDay)
+      .add(i, 'd')
+      .hour(0)
+      .minute(0)
+      .second(0)
+
     const { width } = columnDimensions[i]
     totalWidth += width
+
     const newCell = (
       <div key={i} className="weekCalendar__headerColumn" style={{ width }}>
         <HeaderCell date={date} dayFormat={dayFormat} />
