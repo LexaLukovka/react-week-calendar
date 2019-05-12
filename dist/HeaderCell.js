@@ -55,4 +55,5 @@ var HeaderCell = function (_React$PureComponent) {
 }(_react2.default.PureComponent);
 
 HeaderCell.propTypes = propTypes;
+
 exports.default = HeaderCell;

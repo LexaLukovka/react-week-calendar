@@ -76,7 +76,7 @@ var propTypes = {
   cellHeight: _propTypes2.default.number,
   dayCellComponent: _propTypes2.default.func,
 
-  selectedIntervals: _propTypes2.default.array,
+  prevSelectedIntervals: _propTypes2.default.array,
   onIntervalSelect: _propTypes2.default.func,
   onIntervalUpdate: _propTypes2.default.func,
   onIntervalRemove: _propTypes2.default.func,
@@ -101,7 +101,7 @@ var defaultProps = {
   scaleFormat: 'HH:mm',
   cellHeight: 25,
   dayCellComponent: _DayCell2.default,
-  selectedIntervals: [],
+  prevSelectedIntervals: [],
   eventComponent: _Event2.default,
   modalComponent: _Modal2.default,
   useModal: true,
@@ -188,6 +188,7 @@ var WeekCalendar = function (_React$Component) {
         var intervals = selectedIntervals.filter(function (interval) {
           return interval.start.isSame(day, 'day') || interval.end.isSame(day, 'day');
         });
+
         if (intervals.length > 0) {
           intervals.sort(function (i1, i2) {
             return i1.start.diff(i2.start, 'minutes');
@@ -218,7 +219,6 @@ var WeekCalendar = function (_React$Component) {
             var top = startY * cellHeight;
             var width = (columnDimensions[dayIndex].width - eventSpacing) / groupIntersection;
 
-            //TODO: dividing  by the GroupIntersection doesn't seem to work all that great...
             var left = columnDimensions[dayIndex].left + (width + Math.floor(eventSpacing / groupIntersection)) * beforeIntersectionNumber;
             var height = (endY - startY) * cellHeight;
             var eventWrapperStyle = {
@@ -226,6 +226,7 @@ var WeekCalendar = function (_React$Component) {
               left: left,
               width: width,
               height: height
+              // background: getRandomColor(),
             };
             var eventComponent = _react2.default.createElement(
               'div',
@@ -233,7 +234,7 @@ var WeekCalendar = function (_React$Component) {
                 className: 'weekCalendar__overlay',
                 key: dayIndex * 20000 + index,
                 style: eventWrapperStyle,
-                onClick: _this2.handleEventClick.bind(_this2, interval)
+                onClick: _this2.handleEventClick(interval)
               },
               _react2.default.createElement(EventComponent, interval)
             );
@@ -525,13 +526,15 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.handleEventClick = function (oEvent) {
-    if (_this3.props.onEventClick) {
-      _this3.props.onEventClick(oEvent);
-    }
-    _this3.setState({
-      preselectedInterval: oEvent,
-      updateEvent: true
-    });
+    return function () {
+      if (_this3.props.onEventClick) {
+        _this3.props.onEventClick(oEvent);
+      }
+      _this3.setState({
+        preselectedInterval: oEvent,
+        updateEvent: true
+      });
+    };
   };
 };
 

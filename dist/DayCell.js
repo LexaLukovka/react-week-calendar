@@ -62,4 +62,5 @@ var DayCell = function (_React$Component) {
 }(_react2.default.Component);
 
 DayCell.propTypes = propTypes;
+
 exports.default = DayCell;

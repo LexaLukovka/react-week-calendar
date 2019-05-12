@@ -38,7 +38,9 @@ function getNumberOfCells(time, duration, isUpRound) {
   if (testTime.format('HH:mm') === '23:59') {
     testTime.add(1, 'm');
   }
+
   var result = isUpRound ? Math.ceil(testTime.diff(midnight, 'm') / duration) : Math.floor(testTime.diff(midnight, 'm') / duration);
+
   if (result < 0) {
     return 0;
   }

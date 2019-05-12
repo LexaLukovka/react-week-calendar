@@ -52,7 +52,11 @@ var ScaleColumn = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { key: index, className: 'weekCalendar__scaleCell', style: { height: cellHeight, lineHeight: cellHeight + 'px' } },
+        {
+          key: index,
+          className: 'weekCalendar__scaleCell',
+          style: { height: cellHeight, lineHeight: cellHeight + 'px' }
+        },
         _react2.default.createElement(
           'span',
           null,
@@ -81,4 +85,5 @@ var ScaleColumn = function (_React$Component) {
 }(_react2.default.Component);
 
 ScaleColumn.propTypes = propTypes;
+
 exports.default = ScaleColumn;
